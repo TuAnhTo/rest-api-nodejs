@@ -1,5 +1,9 @@
-const express = require("express");
-const app = express();
+var express = require('express');
+var cors = require('cors');
+var app = express();
+
+app.use(cors());
+
 app.use(express.json());
 app.listen(8081, () => {
     console.log("Serve running on port 8081 ");
@@ -40,7 +44,7 @@ function findToDoIndex(id) {
     return -1;
 }
 
-app.get("/todos", (req, res, next) => {
+app.get("/todos",  (req, res, next) => {
     res.json(todos);
 });
 
