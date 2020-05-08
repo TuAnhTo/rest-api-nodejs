@@ -70,7 +70,7 @@ app.delete("/todos/:id", (req, res, next) => {
     const index = findToDoIndex(id);
     if(index !== -1) {
         todos.splice(index, 1);
-        res.json({message: 'Todo deleted', id: id});
+        res.json({message: 'Todos deleted', id: id});
     } else {
         res.status(404).json({message: 'Not found'});
     }
