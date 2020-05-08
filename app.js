@@ -26,7 +26,7 @@ const todos = [
     },
     {
         id: 4,
-        name: 'Task4'
+        name: 'Task 4'
     },
     {
         id: 5,
@@ -35,14 +35,7 @@ const todos = [
 ];
 
 
-function findToDoIndex(id) {
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].id == id) {
-            return i;
-        }
-    }
-    return -1;
-}
+
 
 app.get("/todos",  (req, res, next) => {
     res.json(todos);
@@ -60,7 +53,7 @@ app.get("/todos/:id", (req, res, next) => {
 });
 
 
-// them todo voi id tu sinh ra
+// them todo voi id tu sinh ra theo date, time 
 
 app.post("/todos", (req, res, next) => {
     const todo = {
@@ -72,28 +65,39 @@ app.post("/todos", (req, res, next) => {
 });
 
 // xoa todo bang id
-app.delete("/todos/:id", (req, res, next ) => {
-   const  id = +res.params.id;
-   const index = findToDoIndex(id);
-   if (index !== -1){
-       todos.splice(index, 1);
-       res.json({message: 'succeed'})
-   } else {
-       res.status(404).json({message: 'Not found'})
-   }
-});
-
-// update todo
-
-app.put("todos/:id", (req, res, next) => {
+app.delete("/todos/:id", (req, res, next) => {
     const id = +req.params.id;
     const index = findToDoIndex(id);
-    if (index !== -1) {
-        const todo = todos[index];
-        todo.name;
-        res.json(todo);
+    if(index !== -1) {
+        todos.splice(index, 1);
+        res.json({message: 'Todo deleted', id: id});
     } else {
-        res.status(404).json({message: " Not found "})
+        res.status(404).json({message: 'Not found'});
     }
 });
 
+
+// update todo
+
+app.put("/todos/:id", (req, res, next) => {
+    const id = +req.params.id;
+    const index = findToDoIndex(id);
+    if(index !== -1) {
+        const todo = todos[index];
+        todo.name = req.body.name;
+        res.json(todo);
+    } else {
+        res.status(404).json({message: 'Not found'});
+    }
+});
+
+
+// tim kiem record todo
+function findToDoIndex(id) {
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].id == id) {
+            return i;
+        }
+    }
+    return -1;
+}
