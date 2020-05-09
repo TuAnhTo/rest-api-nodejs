@@ -1,6 +1,14 @@
 var express = require('express');
 var cors = require('cors');
 var app = express();
+// var mysql = require('mysql');
+// var connec = mysql.createConnection({
+//     host : 'localhost',
+//     user  : 'root',
+//     password : 'tu2anhto',
+//     database : 'todo'
+// });
+// connec.connec();
 
 app.use(cors());
 
