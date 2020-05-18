@@ -18,8 +18,8 @@ mongoClient.connect('mongodb://127.0.0.1:27017/demo', function (err, db) {
 app.use(cors());
 
 app.use(express.json());
-app.listen( process.env.PORT || 8081, () => {
-    console.log("Serve running on port 8081 ");
+app.listen( process.env.PORT || 3000, () => {
+    console.log("Serve running on port 3000 ");
 });
 
 
@@ -50,11 +50,11 @@ const todos = [
 
 
 
-app.get("/todos",  (req, res, next) => {
+app.get("/",  (req, res, next) => {
     res.json(todos);
 });
 
-app.get("/todos/:id", (req, res, next) => {
+app.get("/:id", (req, res, next) => {
     const id = +req.params.id;
     const index = findToDoIndex(id);
 
@@ -68,7 +68,7 @@ app.get("/todos/:id", (req, res, next) => {
 
 // them todo voi id tu sinh ra theo date, time 
 
-app.post("/todos", (req, res, next) => {
+app.post("/", (req, res, next) => {
     const todo = {
         id: (new Date()).getTime(),
         name: req.body.name
@@ -78,7 +78,7 @@ app.post("/todos", (req, res, next) => {
 });
 
 // xoa todo bang id
-app.delete("/todos/:id", (req, res, next) => {
+app.delete("/:id", (req, res, next) => {
     const id = +req.params.id;
     const index = findToDoIndex(id);
     if(index !== -1) {
@@ -92,7 +92,7 @@ app.delete("/todos/:id", (req, res, next) => {
 
 // update todo
 
-app.put("/todos/:id", (req, res, next) => {
+app.put("/:id", (req, res, next) => {
     const id = +req.params.id;
     const index = findToDoIndex(id);
     if(index !== -1) {
