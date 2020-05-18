@@ -18,9 +18,7 @@ mongoClient.connect('mongodb://127.0.0.1:27017/demo', function (err, db) {
 app.use(cors());
 
 app.use(express.json());
-app.listen( process.env.PORT || 3000, () => {
-    console.log("Serve running on port 3000 ");
-});
+app.listen(process.env.PORT || 3000);
 
 
 const todos = [
