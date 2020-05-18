@@ -2,19 +2,6 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 
-
-var mongoClient =require("mongodb").MongoClient;
-
-
-mongoClient.connect('mongodb://127.0.0.1:27017/demo', function (err, db) {
-    //neu ket noi khong thanh cong thi in ra loi
-    if (err) throw err;
-    //neu thanh cong thi log ra thong bao
-    console.log('Ket noi thanh cong');
-    db.close();
-    console.log('close thanh cong');
-});
-
 app.use(cors());
 
 app.use(express.json());
