@@ -18,7 +18,7 @@ mongoClient.connect('mongodb://127.0.0.1:27017/demo', function (err, db) {
 app.use(cors());
 
 app.use(express.json());
-app.listen(8081, () => {
+app.listen( process.env.PORT || 8081, () => {
     console.log("Serve running on port 8081 ");
 });
 
